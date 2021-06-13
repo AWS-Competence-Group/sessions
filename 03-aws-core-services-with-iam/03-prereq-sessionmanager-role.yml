@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Session Manager role for use on EC2 machines
+
+Resources:
+
+  SessionManagerRole:
+    Type: AWS::IAM::Role
+    Properties:      
+      RoleName: GovSessionManagerRole
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:          
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole      
+      Path: /
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+        - arn:aws:iam::aws:policy/AmazonS3FullAccess
+
+  SessionManagerInstanceProfile: 
+    Type: AWS::IAM::InstanceProfile
+    Properties: 
+      InstanceProfileName: GovSessionManagerInstanceProfile
+      Path: "/"
+      Roles: 
+        - !Ref SessionManagerRole
+
+
