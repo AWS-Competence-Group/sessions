@@ -36,5 +36,10 @@ echo "<h1 style=\"color: green; text-align: center; padding: 100px 0;\">Hello Wo
 
 1. Browse to the www-record in web browser.
 
-1. ...SSM and s3 cli call...
+1. Connect to instance using Session Manager
+
+1. Put object into S3 bucket from the server using its instance profile and AWS CLI
+```
+aws s3api put-object --bucket aws-cg-tretton37-demo --key myfile.txt
+```
 
