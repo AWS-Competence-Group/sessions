@@ -7,7 +7,7 @@ AWS Account with
   - Default VPC
   - Instance profile with access policies **AmazonSSMManagedInstanceCore** and **AmazonS3FullAccess**
   - Route53 zone
-
+  - S3 bucket with static website hosting enabled
 
 ### Steps
 
@@ -19,8 +19,10 @@ AWS Account with
 
 1. Connect to the machine using Session Manager
 
-1. Run these commands to install web server on machine
-
+1. Run these commands as to install web server on machine
+```
+sudo -s
+```
 ```
 #!/bin/bash
 yum update -y
@@ -40,6 +42,12 @@ echo "<h1 style=\"color: green; text-align: center; padding: 100px 0;\">Hello Wo
 
 1. Put object into S3 bucket from the server using its instance profile and AWS CLI
 ```
-aws s3api put-object --bucket aws-cg-tretton37-demo --key myfile.txt
+aws s3api put-object --bucket tretton37-static-site-bucket --body /var/www/html/index.html --key index.html --content-type text/html
 ```
+
+1. Browse to the index.html via its S3 url.
+
+## 10.000$ question
+
+What was the reason for allowing the AWS CLI call to put objects in the S3 bucket?
 
