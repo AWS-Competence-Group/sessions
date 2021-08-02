@@ -1,0 +1,3 @@
+Hello AWS Competence Group!
+
+This is a plain text file that contains secret information...

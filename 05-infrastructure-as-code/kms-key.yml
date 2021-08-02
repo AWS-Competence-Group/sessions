@@ -1,5 +1,10 @@
 AWSTemplateFormatVersion: 2010-09-09
 
+Parameters:
+  KeyAlias:
+    Type: String
+    Default: CloudFormationKeyAlias
+
 Resources:
   MyKey:
     Type: AWS::KMS::Key
@@ -8,7 +13,6 @@ Resources:
       PendingWindowInDays: 7
       KeyPolicy:
         Version: 2012-10-17
-        Id: key-default-1
         Statement:
         - Sid: Enable IAM policies
           Effect: Allow
@@ -16,3 +20,9 @@ Resources:
             AWS: !Sub arn:aws:iam::${AWS::AccountId}:root
           Action: kms:*
           Resource: "*"
+
+  MyKeyAlias:
+    Type: AWS::KMS::Alias
+    Properties: 
+      AliasName: !Sub alias/${KeyAlias}
+      TargetKeyId: !Ref MyKey
