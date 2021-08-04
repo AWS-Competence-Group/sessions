@@ -16,9 +16,17 @@ AWS Account with
      - **EnableKeyRotation** (Optional)
      - **PendingWindowInDays** (Optional)
 
-1. Create a CloudFormation template file based on [kms-key.yml](kms-key.yml)
+1. Create a CloudFormation template file based on KMS resources in [kms-key.yml](kms-key.yml)
 
 1. Create a stack in web console based on the CloudFormation template.
+
+1. Add S3 bucket that uses the KMS key for encryption.
+
+1. Update the CloudFormation stack with the S3 bucket.
+
+1. Verify KMS and S3 resources in web console.
+
+1. Delete CloudFormation stack.
 
 ### Sample CLI Calls
 
