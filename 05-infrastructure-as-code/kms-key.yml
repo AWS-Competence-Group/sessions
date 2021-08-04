@@ -26,3 +26,14 @@ Resources:
     Properties: 
       AliasName: !Sub alias/${KeyAlias}
       TargetKeyId: !Ref MyKey
+
+  MyS3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub tretton37-com-${AWS::Region}-bucket
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration:
+          - BucketKeyEnabled: true
+            ServerSideEncryptionByDefault:
+              SSEAlgorithm: aws:kms
+              KMSMasterKeyID: !Ref MyKey
