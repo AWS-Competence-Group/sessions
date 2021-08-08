@@ -30,7 +30,7 @@ AWS Account with
 
 ### Sample CLI Calls
 
-## Encrypt and Decrypt file:
+## Encrypt and Decrypt file using AWS CLI:
 
 ```
 aws kms encrypt \
@@ -48,6 +48,18 @@ aws kms decrypt \
     --output text \
     --query Plaintext | base64 \
     --decode > demo-decrypted-file.txt
+```
+
+## Encrypt and Decrypt file using AWS Encryption CLI:
+
+```
+aws-encryption-cli --encrypt \
+    --input demo-plaintext-file.txt \
+    --wrapping-keys key=alias/CloudFormationKeyAlias \
+    --metadata-output ~/metadata \
+    --encryption-context purpose=test \
+    --commitment-policy require-encrypt-require-decrypt \
+    --output .
 ```
 
 
