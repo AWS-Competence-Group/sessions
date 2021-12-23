@@ -31,6 +31,11 @@ systemctl start httpd.service
 systemctl enable httpd.service
 echo "<h1 style=\"color: green; text-align: center; padding: 100px 0;\">Hello World from $(hostname -f)</h1>" > /var/www/html/index.html
 ```
+*...on Ubuntu*
+```
+sudo apt-get update
+sudo apt-get install apache2
+```
 
 1. Browse to the Public IPv4 DNS for the machine to verify web server returns response.
 
